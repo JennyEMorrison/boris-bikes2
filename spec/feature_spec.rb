@@ -1,4 +1,4 @@
-require "./lib/docking_station.rb"
+require "./lib/docking_station"
 #  require "./lib/bike" # part of DockingStation class, included there already
 
 p "create Docking Station:"
