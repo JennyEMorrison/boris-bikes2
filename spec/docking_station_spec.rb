@@ -4,21 +4,21 @@ describe DockingStation do
   
   it { is_expected.to respond_to :release_bike }
     
-  it 'releases working bikes' do
-    bike = Bike.new
-    subject.dock(bike)
-    bike = subject.release_bike
-    expect(bike).to be_working
-  end
+   it 'releases working bikes' do
+     bike = Bike.new
+     subject.dock(bike)
+     bike = subject.release_bike
+     expect(bike).to be_working
+   end
   
   it { is_expected.to respond_to(:dock).with(1).argument }
-  it {is_expected.to respond_to :bike }
+  #it {is_expected.to respond_to :bike }
 
-  it 'docks something' do
-    bike = Bike.new
+  #it 'docks something' do
+  #  bike = Bike.new
     # We want to return the bike we dock
-    expect(subject.dock(bike)).to eq bike
-  end
+ #   expect(subject.dock(bike)).to eq bike
+ # end
   
   describe ' #release_bike a' do
 
@@ -31,12 +31,12 @@ describe DockingStation do
       
   end
     
-  it 'returns docked bikes' do
-    bike = Bike.new
-    subject.dock(bike)
-    # Again, we need to return the bike we just docked
-    expect(subject.bike).to eq bike
-  end
+  # it 'returns docked bikes' do
+  #   bike = Bike.new
+  #   subject.dock(bike)
+  #   # Again, we need to return the bike we just docked
+  #   expect(subject.bike).to eq bike
+  # end
   
 
   describe '#release_bike' do
@@ -47,7 +47,15 @@ describe DockingStation do
     end
   end
 
-
+  describe '#dock' do
+    it 'raises an error message when full' do
+      DockingStation::DEFAULT_CAPACITY.times do
+        subject.dock Bike.new
+      end
+    expect { subject.dock Bike.new }.to raise_error "docking station full"
+    end
+  end
+  #20.times { subject.dock Bike.new }
   #describe '#test' do
   #  it "does a when done b" do 
      # variable  = class.new
